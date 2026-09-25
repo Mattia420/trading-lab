@@ -22,3 +22,17 @@ Bot che gestisce il portafoglio bilanciato: ribilancia una volta l'anno o quando
 - Liquidità allo 0% (prudente per le strategie di timing).
 - Quote frazionarie; commissioni da verificare sul foglio costi del broker scelto.
 - Il passato non garantisce il futuro: 20 anni sono un solo "percorso" possibile del mercato.
+
+## Test aggiuntivo: guadagnare anche quando la borsa scende (ETF inverso)
+Stessa regola di trend sulla borsa USA: sopra la media di 10 mesi investiti, sotto si compra un ETF
+inverso (che sale quando la borsa scende). Netto finale da 2.000 €:
+
+| | 2006-2026 | 2006-2015 | 2016-oggi |
+|---|---|---|---|
+| Compra e tieni | 14.127 € (9,9%/anno, calo max -47%) | 6,4%/anno | 12,6%/anno |
+| Trend, sotto la media in liquidità | 7.789 € (6,8%/anno, -30%) | 7,0%/anno | 7,0%/anno |
+| Trend, sotto la media ETF inverso | 4.018 € (3,4%/anno, -41%) | 7,2%/anno | 0,1%/anno |
+
+Andare "short" ha peggiorato tutto: il segnale arriva quando il calo è già in parte avvenuto, spesso
+la borsa rimbalza subito dopo e la posizione inversa perde. Gli ETF inversi reali a ribilanciamento
+giornaliero perdono valore anche nei mercati che oscillano senza direzione.

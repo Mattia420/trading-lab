@@ -21,8 +21,8 @@ import numpy as np
 import pandas as pd
 
 DATA = Path(__file__).parent / "data" / "prices.csv"
-TICKERS = ["SPY", "EFA", "IEF", "GLD", "SHY", "EURUSD=X", "ISP.MI", "UCG.MI"]
-USD = {"SPY", "EFA", "IEF", "GLD", "SHY"}
+TICKERS = ["SPY", "EFA", "IEF", "GLD", "SHY", "SH", "EURUSD=X", "ISP.MI", "UCG.MI"]
+USD = {"SPY", "EFA", "IEF", "GLD", "SHY", "SH"}
 STOCKS = {"ISP.MI", "UCG.MI"}  # redditi diversi: minus compensabili
 TAX = 0.26
 BOLLO = 0.002
@@ -69,6 +69,20 @@ def dual_momentum(h):
     return {best: 1.0} if r[best] > 0 else {"IEF": 1.0}
 
 
+def spy_bh(h):
+    return {"SPY": 1.0}
+
+
+def trend_long_cash(h):
+    """Borsa USA sopra la media di 10 mesi: investito. Sotto: liquidità."""
+    return {"SPY": 1.0} if h["SPY"].iloc[-1] > h["SPY"].iloc[-10:].mean() else {"CASH": 1.0}
+
+
+def trend_long_short(h):
+    """Come sopra, ma sotto la media compra l'ETF inverso: guadagna quando la borsa scende."""
+    return {"SPY": 1.0} if h["SPY"].iloc[-1] > h["SPY"].iloc[-10:].mean() else {"SH": 1.0}
+
+
 def banche_bh(h):
     return {"ISP.MI": 0.5, "UCG.MI": 0.5}
 
@@ -78,6 +92,9 @@ STRATEGIE = {
     "Compra e tieni bilanciato (azioni, bond, oro)": (bh_bilanciato, "annuale"),
     "Trend: azioni solo sopra media 10 mesi": (trend_10m, "mensile"),
     "Dual momentum (Antonacci)": (dual_momentum, "mensile"),
+    "Borsa USA: compra e tieni": (spy_bh, "annuale"),
+    "Borsa USA: trend, sotto la media in liquidità": (trend_long_cash, "mensile"),
+    "Borsa USA: trend, sotto la media ETF inverso (short)": (trend_long_short, "mensile"),
     "Riferimento: banche italiane (Intesa + UniCredit)": (banche_bh, "annuale"),
 }
 

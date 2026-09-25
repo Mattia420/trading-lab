@@ -8,7 +8,7 @@ dopo aver venduto tutto e pagato le tasse. Tabelle complete in `output.md`.
 - **Le banche italiane non sono "basso rischio"**: -86% di calo massimo (2007-2012), -6,6% l'anno nel
   2006-2015, poi +15% l'anno dal 2016. Guadagno reale, ma solo per chi ha resistito a perdere quasi tutto.
 - **Il timing (trend, dual momentum) ha protetto nelle crisi del 2008 e del 2011**, ma dal 2016 ha reso
-  la metà del compra e tieni, perché esce ed entra nei momenti sbagliati dopo cali brevi (2018, 2020, 2022).
+  la metà del compra e tieni, perché esce ed entra nei momenti sbagliati: vende dopo cali brevi e ricompra quando i prezzi sono già risaliti.
   Ogni uscita fa anche pagare tasse, e sugli ETF le perdite non compensano i guadagni.
 - **Il bilanciato (azioni + obbligazioni + oro) ha avuto un calo massimo simile al timing (-23%) con un
   rendimento migliore e meno ordini.** La riduzione del rischio l'ha data la diversificazione, non il timing.

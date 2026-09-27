@@ -1,0 +1,38 @@
+{
+ "name": "trend_short",
+ "cash": 77.28005981445312,
+ "positions": {
+  "XSPX.MI": {
+   "qty": 14,
+   "cost": 136.97999572753906
+  }
+ },
+ "history": [
+  {
+   "date": "2026-09-25",
+   "value": 1995.0
+  }
+ ],
+ "trades": [
+  {
+   "date": "2026-09-25",
+   "ticker": "XSPX.MI",
+   "side": "BUY",
+   "qty": 14,
+   "price": 136.98,
+   "tax": 0.0,
+   "reason": "XSPX.MI a fine 08/2026 vale 133.54, sopra la media a 10 mesi (123.34): trend positivo, sto sull'azionario."
+  }
+ ],
+ "totals": {
+  "commissioni": 5.0,
+  "tasse": 0.0,
+  "bollo": 0.0,
+  "minus_non_compensabili": 0.0
+ },
+ "meta": {
+  "capital": 2000,
+  "last_signal_month": "2026-09",
+  "last_run": "2026-09-25"
+ }
+}

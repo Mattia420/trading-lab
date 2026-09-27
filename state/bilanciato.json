@@ -1,0 +1,63 @@
+{
+ "name": "bilanciato",
+ "cash": 45.89002990722656,
+ "positions": {
+  "SWDA.MI": {
+   "qty": 9,
+   "cost": 128.9199981689453
+  },
+  "SEGA.MI": {
+   "qty": 4,
+   "cost": 104.38999938964844
+  },
+  "SGLD.MI": {
+   "qty": 1,
+   "cost": 361.2699890136719
+  }
+ },
+ "history": [
+  {
+   "date": "2026-09-25",
+   "value": 1985.0
+  }
+ ],
+ "trades": [
+  {
+   "date": "2026-09-25",
+   "ticker": "SWDA.MI",
+   "side": "BUY",
+   "qty": 9,
+   "price": 128.92,
+   "tax": 0.0,
+   "reason": "Primo investimento: compro i pesi obiettivo."
+  },
+  {
+   "date": "2026-09-25",
+   "ticker": "SEGA.MI",
+   "side": "BUY",
+   "qty": 4,
+   "price": 104.39,
+   "tax": 0.0,
+   "reason": "Primo investimento: compro i pesi obiettivo."
+  },
+  {
+   "date": "2026-09-25",
+   "ticker": "SGLD.MI",
+   "side": "BUY",
+   "qty": 1,
+   "price": 361.27,
+   "tax": 0.0,
+   "reason": "Primo investimento: compro i pesi obiettivo."
+  }
+ ],
+ "totals": {
+  "commissioni": 15.0,
+  "tasse": 0.0,
+  "bollo": 0.0,
+  "minus_non_compensabili": 0.0
+ },
+ "meta": {
+  "capital": 2000,
+  "last_run": "2026-09-25"
+ }
+}

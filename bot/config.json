@@ -1,0 +1,48 @@
+{
+  "mode": "paper",
+  "commission_eur": 5.0,
+  "tax_rate": 0.26,
+  "bollo_rate": 0.002,
+  "min_order_eur": 100,
+  "portfolios": {
+    "bilanciato": {
+      "description": "60% azioni mondo, 25% titoli di Stato euro, 15% oro. Ribilancia se un peso si sposta di oltre 5 punti.",
+      "strategy": "fixed_weights",
+      "capital_eur": 2000,
+      "weights": {"SWDA.MI": 0.60, "SEGA.MI": 0.25, "SGLD.MI": 0.15},
+      "drift_pp": 5
+    },
+    "trend_liquidita": {
+      "description": "S&P 500 quando è sopra la media di 10 mesi, altrimenti monetario in euro. Decide a inizio mese.",
+      "strategy": "trend",
+      "capital_eur": 2000,
+      "asset": "XSPX.MI",
+      "defensive": "XEON.MI",
+      "sma_months": 10
+    },
+    "trend_short": {
+      "description": "S&P 500 quando è sopra la media di 10 mesi, altrimenti ETF inverso (guadagna se la borsa scende). Decide a inizio mese.",
+      "strategy": "trend",
+      "capital_eur": 2000,
+      "asset": "XSPX.MI",
+      "defensive": "XSPS.MI",
+      "sma_months": 10
+    }
+  },
+  "risk": {
+    "allowed_tickers": ["SWDA.MI", "SEGA.MI", "SGLD.MI", "XSPX.MI", "XEON.MI", "XSPS.MI"],
+    "max_orders_per_day": 6,
+    "max_daily_loss_pct": 5,
+    "max_drawdown_pct": 30,
+    "max_price_jump_pct": 15,
+    "max_data_age_days": 4
+  },
+  "names": {
+    "SWDA.MI": "iShares Core MSCI World",
+    "SEGA.MI": "iShares Core € Govt Bond",
+    "SGLD.MI": "Invesco Physical Gold",
+    "XSPX.MI": "Xtrackers S&P 500 Swap",
+    "XEON.MI": "Xtrackers EUR Overnight Rate",
+    "XSPS.MI": "Xtrackers S&P 500 Inverse Daily"
+  }
+}

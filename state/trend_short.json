@@ -19,6 +19,10 @@
   {
    "date": "2026-09-30",
    "value": 2001.02
+  },
+  {
+   "date": "2026-10-01",
+   "value": 1999.9
   }
  ],
  "trades": [
@@ -40,7 +44,7 @@
  },
  "meta": {
   "capital": 2000,
-  "last_signal_month": "2026-09",
-  "last_run": "2026-09-30"
+  "last_signal_month": "2026-10",
+  "last_run": "2026-10-01"
  }
 }

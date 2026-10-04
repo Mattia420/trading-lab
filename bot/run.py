@@ -8,12 +8,13 @@ i pesi obiettivo, filtra gli ordini, li esegue sul conto simulato e scrive il di
 """
 import argparse
 import json
+import math
 from pathlib import Path
 
 import pandas as pd
 
 from . import risk
-from .portfolio import Portfolio
+from .portfolio import Order, Portfolio
 from .report import write_reports
 from .strategies import STRATEGIES
 
@@ -22,16 +23,44 @@ CONFIG = Path(__file__).resolve().parent / "config.json"
 
 
 def load_prices(tickers, years=2):
+    """Chiusure e aperture giornaliere (rettificate per i dividendi)."""
     import yfinance as yf
-    df = yf.download(tickers, period=f"{years}y", auto_adjust=True, progress=False)["Close"]
-    return df[tickers].dropna(how="all")
+    df = yf.download(tickers, period=f"{years}y", auto_adjust=True, progress=False)
+    close = df["Close"][tickers].dropna(how="all")
+    return close, df["Open"][tickers].reindex(close.index)
 
 
-def run_portfolio(name, pcfg, cfg, prices, today, market_problems):
+def fill_pending(pf, opens, cfg, today, log):
+    """Esegue all'apertura di oggi gli ordini decisi ieri sera, con slippage:
+    chi compra paga un po' di più, chi vende incassa un po' di meno."""
+    slip = cfg["slippage_bps"] / 1e4
+    pending = sorted(pf.meta.pop("pending", []), key=lambda o: o["side"] != "SELL")
+    for p in pending:
+        price = opens.get(p["ticker"])
+        if price is None or pd.isna(price):
+            log["notes"].append(f"Ordine annullato, manca il prezzo di apertura: {p['side']} {p['qty']} {p['ticker']}.")
+            continue
+        price *= (1 + slip) if p["side"] == "BUY" else (1 - slip)
+        qty = p["qty"]
+        if p["side"] == "BUY":
+            qty = min(qty, math.floor((pf.cash - cfg["commission_eur"]) / price))
+        else:
+            qty = min(qty, pf.qty(p["ticker"]))
+        if qty <= 0:
+            log["notes"].append(f"Ordine annullato, contanti o quote insufficienti all'apertura: "
+                                f"{p['side']} {p['qty']} {p['ticker']}.")
+            continue
+        o = Order(p["ticker"], p["side"], qty, float(price), p["reason"])
+        pf.execute(o, cfg["commission_eur"], cfg["tax_rate"], str(today.date()))
+        log["executed"].append(o)
+
+
+def run_portfolio(name, pcfg, cfg, prices, opens, today, market_problems):
     path = ROOT / "state" / f"{name}.json"
     pf = Portfolio.load(path, name, pcfg["capital_eur"])
     row = prices.loc[today]
-    log = {"name": name, "description": pcfg["description"], "orders": [], "rejected": [], "notes": []}
+    log = {"name": name, "description": pcfg["description"], "orders": [], "executed": [],
+           "rejected": [], "notes": []}
 
     if pf.history and pf.history[-1]["date"] == str(today.date()):
         log["notes"].append("Giornata già elaborata: nessuna nuova azione.")
@@ -52,7 +81,10 @@ def run_portfolio(name, pcfg, cfg, prices, today, market_problems):
 
     if blocked:
         log["decision"] = "BLOCCATO: " + why
+        for p in pf.meta.pop("pending", []):
+            log["notes"].append(f"Ordine di ieri annullato per il blocco: {p['side']} {p['qty']} {p['ticker']}.")
     else:
+        fill_pending(pf, opens.loc[today], cfg, today, log)
         target, reason = STRATEGIES[pcfg["strategy"]](pcfg, prices, pf, today)
         log["decision"] = reason
         if target is not None:
@@ -60,8 +92,10 @@ def run_portfolio(name, pcfg, cfg, prices, today, market_problems):
             for o in orders:
                 o.reason = reason
             ok, rejected = risk.filter_orders(orders, pf, row, cfg["risk"], cfg["commission_eur"])
-            for o in ok:
-                pf.execute(o, cfg["commission_eur"], cfg["tax_rate"], str(today.date()))
+            # si decide dopo la chiusura: il prezzo di chiusura non è più disponibile,
+            # gli ordini partono domani all'apertura
+            pf.meta["pending"] = [{"ticker": o.ticker, "side": o.side, "qty": o.qty,
+                                   "reason": o.reason, "decided": str(today.date())} for o in ok]
             log["orders"] = ok
             log["rejected"] = rejected
             if not orders:
@@ -81,14 +115,14 @@ def main():
     cfg = json.loads(CONFIG.read_text())
     tickers = sorted({t for p in cfg["portfolios"].values()
                       for t in (list(p.get("weights", {})) + [p.get("asset"), p.get("defensive")]) if t})
-    raw = load_prices(tickers)
+    raw, opens = load_prices(tickers)
     today = raw.index[-1]
     problems = risk.check_market(raw, today, tickers, cfg["risk"], pd.Timestamp.now())
     prices = raw.ffill()
 
     results, any_changed = [], False
     for name, pcfg in cfg["portfolios"].items():
-        pf, path, log, changed = run_portfolio(name, pcfg, cfg, prices, today, problems)
+        pf, path, log, changed = run_portfolio(name, pcfg, cfg, prices, opens, today, problems)
         results.append((pf, log))
         any_changed |= changed
         if changed and not args.dry_run:

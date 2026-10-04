@@ -24,12 +24,15 @@ def portfolio_section(pf, log, row, names):
              f"- **Decisione:** {log.get('decision', '-')}"]
     for n in log["notes"]:
         lines.append(f"- {n}")
-    if log["orders"]:
-        lines += ["", "| Ordine | Strumento | Quote | Prezzo | Importo |", "|---|---|---|---|---|"]
-        for o in log["orders"]:
-            side = "Compra" if o.side == "BUY" else "Vendi"
-            lines.append(f"| {side} | {o.ticker} ({names.get(o.ticker, '')}) | {o.qty} | "
-                         f"{eur(o.price)} | {eur(o.amount)} |")
+    for key, title in (("executed", "Eseguiti oggi all'apertura (ordini decisi ieri sera)"),
+                       ("orders", "Decisi stasera, da eseguire domani all'apertura (prezzo stimato)")):
+        if log[key]:
+            lines += ["", f"**{title}**", "", "| Ordine | Strumento | Quote | Prezzo | Importo |",
+                      "|---|---|---|---|---|"]
+            for o in log[key]:
+                side = "Compra" if o.side == "BUY" else "Vendi"
+                lines.append(f"| {side} | {o.ticker} ({names.get(o.ticker, '')}) | {o.qty} | "
+                             f"{eur(o.price)} | {eur(o.amount)} |")
     for o, why in log["rejected"]:
         lines.append(f"- ⚠️ Ordine scartato dai controlli di rischio: {o.side} {o.qty} {o.ticker} ({why})")
     if pf.positions:
@@ -49,7 +52,9 @@ def write_reports(results, row, today, cfg, problems, save=True):
     names = cfg["names"]
     head = [f"# Diario del bot — {today:%d/%m/%Y}", "",
             f"Modalità: **{cfg['mode']}** (soldi finti, prezzi veri di chiusura). "
-            f"Commissione {eur(cfg['commission_eur'])} a ordine, tasse {cfg['tax_rate']:.0%} sulle plusvalenze.", ""]
+            f"Commissione {eur(cfg['commission_eur'])} a ordine, slippage {cfg['slippage_bps']} punti base, "
+            f"tasse {cfg['tax_rate']:.0%} sulle plusvalenze. Gli ordini decisi la sera si eseguono "
+            "all'apertura del giorno dopo.", ""]
     if problems:
         head += ["> ⚠️ **Anomalie sui dati, nessun ordine eseguito:**"] + [f"> - {p}" for p in problems] + [""]
     summary = ["| Portafoglio | Valore | Dall'inizio | Ordini |", "|---|---|---|---|"]

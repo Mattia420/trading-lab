@@ -13,6 +13,8 @@ Ipotesi (volutamente prudenti, vedi RISULTATI.md):
   Sulle azioni le minus compensano plus future (scadenza a 4 anni ignorata).
 - Imposta di bollo 0,2% annuo sul valore dei titoli.
 - Commissione fissa per ordine; quote frazionarie ammesse (semplificazione).
+- Nessuna sbirciata al futuro: la decisione usa le chiusure fino al mese precedente e viene
+  eseguita alla chiusura del mese successivo (prezzo che al momento della decisione non si conosceva).
 """
 import argparse
 from pathlib import Path
@@ -39,6 +41,8 @@ def load_prices(start="2004-12-01"):
         px[t] = px[t] / fx
     px = px.drop(columns=[c for c in px.columns if c not in TICKERS or c == "EURUSD=X"])
     m = px.ffill().resample("ME").last().loc[start:]
+    if px.index[-1] + pd.offsets.BDay(1) <= m.index[-1]:
+        m = m.iloc[:-1]  # l'ultimo mese non è ancora chiuso: non è una vera chiusura mensile
     m["CASH"] = 1.0
     return m
 
@@ -128,7 +132,7 @@ def run(prices, strat, freq, capitale, commissione, start, end):
 
     for i, d in enumerate(dates):
         row = p.loc[d]
-        hist = p.loc[:d]
+        hist = p.loc[:d].iloc[:-1]  # decide con i dati fino al mese prima, esegue ai prezzi di questo mese
         value = cash + sum(q * row[t] for t, q in qty.items())
         rebalance = i == 0 or freq == "mensile" or d.month == 1
         if rebalance:

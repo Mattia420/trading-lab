@@ -1,6 +1,7 @@
 {
   "mode": "paper",
   "commission_eur": 5.0,
+  "slippage_bps": 10,
   "tax_rate": 0.26,
   "bollo_rate": 0.002,
   "min_order_eur": 100,

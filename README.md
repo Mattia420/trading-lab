@@ -4,6 +4,9 @@ Laboratorio personale per un bot di investimento **a regole** su ETF di Borsa It
 
 1. **Backtest** ✅: `python backtest.py` confronta strategie su 20 anni di dati, in euro, con commissioni,
    tasse italiane e bollo. Risultati commentati in `RISULTATI.md`.
+   **Validazione** ✅: `python validate.py` applica i tre cancelli (nessuna sbirciata al futuro, Sharpe
+   sgonfiato per il numero di tentativi, walk-forward) e scrive `VALIDAZIONE.md`. La revisione critica
+   del codice con le 8 domande è in `CRITICA.md`.
 2. **Paper trading** ⏳ (in corso): il bot gira ogni giorno feriale dopo la chiusura, con soldi finti e prezzi veri.
 3. **Soldi veri, pochi**: il bot *propone* gli ordini, il proprietario li approva uno per uno.
 
@@ -36,7 +39,15 @@ Regole fisse nel codice, che nessuna strategia può scavalcare:
   (per sbloccarlo: togliere `halted` da `state/<portafoglio>.json`).
 - Solo strumenti in elenco, niente vendite allo scoperto, niente leva, massimo 6 ordini al giorno.
 
-Simulazione: esecuzione al prezzo di chiusura, quote intere, 5 € a ordine, tasse al 26% sulle
+Simulazione: ordini decisi dopo la chiusura ed eseguiti all'apertura del giorno dopo con 10 punti base
+di slippage, quote intere, 5 € a ordine, tasse al 26% sulle
 plusvalenze (sugli ETF le minusvalenze non compensano), bollo 0,2% a inizio anno.
 
 Credenziali del broker (fase 3): solo in variabili d'ambiente o segreti di GitHub, mai nel repository.
+
+## Regola d'oro (dal metodo di validazione)
+
+Nessuna strategia passa a soldi veri se non supera tutti e tre i cancelli di `validate.py`.
+Ogni nuova idea si aggiunge in `all_trials()`, anche quelle scartate: il conteggio onesto dei tentativi
+è ciò che rende affidabile lo Sharpe sgonfiato. Le condizioni di stop si decidono prima di partire
+(`bot/config.json → risk`) e non si cambiano mentre si perde.

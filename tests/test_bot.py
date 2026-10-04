@@ -86,3 +86,24 @@ def test_fixed_weights_holds_inside_band():
     pf.positions = {"A": {"qty": 6, "cost": 100}, "B": {"qty": 4, "cost": 100}}
     cfg = {"weights": {"A": 0.62, "B": 0.38}, "drift_pp": 5}
     assert fixed_weights(cfg, row, pf, row.index[0])[0] is None
+
+
+def test_pending_orders_fill_next_open_with_slippage():
+    from bot.run import fill_pending
+    pf = new_pf(cash=1000)
+    pf.meta["pending"] = [{"ticker": "A", "side": "BUY", "qty": 5, "reason": "r", "decided": "d"}]
+    log = {"executed": [], "notes": []}
+    cfg = {"slippage_bps": 10, "commission_eur": 5, "tax_rate": 0.26}
+    fill_pending(pf, pd.Series({"A": 100.0}), cfg, pd.Timestamp("2026-10-05"), log)
+    assert log["executed"][0].price == pytest.approx(100.1)  # paga lo slippage
+    assert "pending" not in pf.meta and pf.qty("A") == 5
+
+
+def test_pending_buy_is_reduced_when_open_gaps_up():
+    from bot.run import fill_pending
+    pf = new_pf(cash=505)
+    pf.meta["pending"] = [{"ticker": "A", "side": "BUY", "qty": 5, "reason": "r", "decided": "d"}]
+    log = {"executed": [], "notes": []}
+    fill_pending(pf, pd.Series({"A": 120.0}), {"slippage_bps": 0, "commission_eur": 5, "tax_rate": 0.26},
+                 pd.Timestamp("2026-10-05"), log)
+    assert pf.qty("A") == 4 and pf.cash >= 0

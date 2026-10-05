@@ -34,3 +34,10 @@ def test_deflated_sharpe_rejects_best_of_many_noise_strategies():
     srs = [r.mean() / r.std() for r in rets]
     best = rets[int(np.argmax(srs))]
     assert deflated_sharpe(best, srs)["dsr"] < 0.95
+
+
+def test_moving_into_cash_is_not_charged_twice():
+    rets = random_returns(3)
+    w = pd.DataFrame({"A": [1.0, 0.0, 0.0], "CASH": [0.0, 1.0, 1.0]}, index=rets.index)
+    bt = backtest(rets, w, Config(fee_bps=10, slippage_bps=0))
+    assert bt["turnover"].tolist() == [0.0, 1.0, 1.0]  # entra in A, poi esce da A: una volta ciascuno

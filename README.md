@@ -7,6 +7,8 @@ Laboratorio personale per un bot di investimento **a regole** su ETF di Borsa It
    **Validazione** ✅: `python validate.py` applica i tre cancelli (nessuna sbirciata al futuro, Sharpe
    sgonfiato per il numero di tentativi, walk-forward) e scrive `VALIDAZIONE.md`. La revisione critica
    del codice con le 8 domande è in `CRITICA.md`.
+   **Giro di ipotesi** ✅: `python ipotesi.py` mette alla prova idee nuove solo al rialzo contro il
+   bilanciato e scrive `IPOTESI.md`. Primo giro (05/10/2026): 4 ipotesi, tutte scartate.
 2. **Paper trading** ⏳ (in corso): il bot gira ogni giorno feriale dopo la chiusura, con soldi finti e prezzi veri.
 3. **Soldi veri, pochi**: il bot *propone* gli ordini, il proprietario li approva uno per uno.
 

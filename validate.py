@@ -37,7 +37,8 @@ def backtest(rets: pd.DataFrame, weights: pd.DataFrame, cfg: Config) -> pd.DataF
     Il peso deciso a fine mese t si applica al rendimento del mese t+1."""
     position = weights.reindex(columns=rets.columns, fill_value=0).shift(1).fillna(0)
     gross = (position * rets).sum(axis=1)
-    turnover = position.diff().abs().sum(axis=1).fillna(position.abs().sum(axis=1))
+    traded = position.drop(columns="CASH", errors="ignore")  # tenere liquidità non è un ordine
+    turnover = traded.diff().abs().sum(axis=1)
     costs = turnover * (cfg.fee_bps + cfg.slippage_bps) / 1e4
     net = gross - costs
     return pd.DataFrame({"gross": gross, "costs": costs, "net": net, "turnover": turnover})

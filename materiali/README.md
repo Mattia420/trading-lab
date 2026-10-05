@@ -28,3 +28,4 @@ Per ognuno Claude:
 |---|---|---|---|
 | 04/10/2026 | Video Instagram + testo "Backtest engine…" (metodo di validazione) | Metodo, non strategia: adottato come base (`validate.py`, `CRITICA.md`) | — |
 | 05/10/2026 | Primo giro di ipotesi (rotazione, freno volatilità, fine mese, rischio bilanciato) | 4 | 4 scartate (`IPOTESI.md`) |
+| 05/10/2026 | Ricerca online approfondita (studi accademici, SPIVA, ESMA, broker) | 3 nuove (Sell in May, fattori, Faber 5 asset) | 3 scartate (`IPOTESI_2.md`, `RICERCA.md`) |

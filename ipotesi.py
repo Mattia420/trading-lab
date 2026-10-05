@@ -113,8 +113,8 @@ def walk_forward(series: dict, bench: pd.Series, train=60, test=12):
     return pd.DataFrame(rows)
 
 
-def main():
-    cfg = Config()
+def build(cfg):
+    """Calcola tutte le varianti del primo giro. Restituisce dati, riferimento, ipotesi e tentativi."""
     px = load_prices().loc["2005-01-31":]
     rets = px.pct_change().fillna(0)
     rets["CASH"] = 0.0
@@ -151,6 +151,12 @@ def main():
     excess_all += [s.loc[EVAL_FROM:] - bench.loc[EVAL_FROM:] for _, grid, _ in hyp.values() for s in grid.values()]
     trial_sr = [e.mean() / e.std() for e in excess_all if e.std() > 0]
     n_trials = len(old) + sum(len(g) for _, g, _ in hyp.values())
+    return px, bench, hyp, trial_sr, n_trials
+
+
+def main():
+    cfg = Config()
+    px, bench, hyp, trial_sr, n_trials = build(cfg)
 
     mb = metrics(bench.loc[EVAL_FROM:], cfg)
     out = ["# Giro di ipotesi solo al rialzo", "",

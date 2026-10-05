@@ -9,6 +9,8 @@ Laboratorio personale per un bot di investimento **a regole** su ETF di Borsa It
    del codice con le 8 domande è in `CRITICA.md`.
    **Giro di ipotesi** ✅: `python ipotesi.py` mette alla prova idee nuove solo al rialzo contro il
    bilanciato e scrive `IPOTESI.md`. Primo giro (05/10/2026): 4 ipotesi, tutte scartate.
+   Secondo giro (`ipotesi_giro2.py` → `IPOTESI_2.md`): le 3 idee con più prove pubblicate, tutte scartate.
+   La ricerca con le fonti è in `RICERCA.md`.
 2. **Paper trading** ⏳ (in corso): il bot gira ogni giorno feriale dopo la chiusura, con soldi finti e prezzi veri.
 3. **Soldi veri, pochi**: il bot *propone* gli ordini, il proprietario li approva uno per uno.
 

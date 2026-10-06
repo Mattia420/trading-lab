@@ -33,6 +33,23 @@ Come gira: `.github/workflows/paper.yml` lo avvia dal lunedì al venerdì alle 1
 fa il giro giornaliero e salva diario e stato con un commit. Si può avviare anche a mano da
 *Actions → Bot paper trading → Run workflow*. In locale: `python -m bot.run --dry-run`.
 
+## Portafogli da 100 € (dal 06/10/2026)
+
+| Portafoglio | Cosa fa | Soldi |
+|---|---|---|
+| `reale_100` | Specchio del conto reale: 100 € nel bilanciato 60/25/15 con PAC gratuito a quote frazionate, tenuto | Reali, da attivare dal proprietario |
+| `operativo_100` | Entra ed esce ogni mese con il trend di Faber su 5 asset, 1 € a ordine | Solo simulati |
+
+## Comitato di controllo (adattato dalla guida "Five-Agent AI Trading Team")
+
+- `regole/regole-rischio.md`: le regole del proprietario (bozza iniziale scritta da Claude, da rivedere).
+- `python comitato.py` prepara il dossier dei fatti in `comitato/AAAA-MM-GG-dossier.md`.
+- Gli agenti `agenti/rischio.md` e `agenti/trader.md` lo leggono e scrivono APPROVO / ASPETTA / RIFIUTO
+  in `comitato/AAAA-MM-GG-decisioni.md`. Nessun ordine parte senza l'approvazione del proprietario.
+- Presi dalla guida: regole scritte dal proprietario, fatti separati dalle opinioni, niente invenzioni,
+  "informazioni mancanti", diario firmato. Lasciati fuori: analisi di singoli titoli con stop e
+  obiettivo, agenti Notizie e Grafici (trading attivo che non ha superato i nostri cancelli).
+
 ## Controlli di rischio (`bot/risk.py`)
 
 Regole fisse nel codice, che nessuna strategia può scavalcare:

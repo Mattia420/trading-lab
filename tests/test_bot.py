@@ -107,3 +107,23 @@ def test_pending_buy_is_reduced_when_open_gaps_up():
     fill_pending(pf, pd.Series({"A": 120.0}), {"slippage_bps": 0, "commission_eur": 5, "tax_rate": 0.26},
                  pd.Timestamp("2026-10-05"), log)
     assert pf.qty("A") == 4 and pf.cash >= 0
+
+
+def test_fractional_plan_reaches_weights_and_respects_commissions():
+    pf = new_pf(cash=100)
+    row = pd.Series({"A": 131.0, "B": 104.0, "C": 355.0})
+    orders = pf.plan({"A": 0.6, "B": 0.25, "C": 0.15}, row, commission=1, min_order=5, fractional=True)
+    for o in orders:
+        pf.execute(o, 1, 0.26, "d")
+    assert {o.ticker for o in orders} == {"A", "B", "C"}  # anche con 100 € si compra tutto
+    assert 0 <= pf.cash < 1
+    assert pf.qty("A") * 131 == pytest.approx(0.6 * 97, abs=0.02)
+
+
+def test_trend_multi_splits_assets_and_uses_defensive():
+    from bot.strategies import trend_multi
+    idx = pd.bdate_range("2025-01-01", "2026-09-25")
+    up = pd.Series(range(len(idx)), index=idx, dtype=float) + 100
+    prices = pd.DataFrame({"A": up, "B": up[::-1].values, "D": 1.0}, index=idx)
+    target, _ = trend_multi({"assets": ["A", "B"], "defensive": "D", "sma_months": 10}, prices, new_pf(), idx[-1])
+    assert target == {"A": 0.5, "D": 0.5}

@@ -31,7 +31,7 @@ def portfolio_section(pf, log, row, names):
                       "|---|---|---|---|---|"]
             for o in log[key]:
                 side = "Compra" if o.side == "BUY" else "Vendi"
-                lines.append(f"| {side} | {o.ticker} ({names.get(o.ticker, '')}) | {o.qty} | "
+                lines.append(f"| {side} | {o.ticker} ({names.get(o.ticker, '')}) | {o.qty:g} | "
                              f"{eur(o.price)} | {eur(o.amount)} |")
     for o, why in log["rejected"]:
         lines.append(f"- ⚠️ Ordine scartato dai controlli di rischio: {o.side} {o.qty} {o.ticker} ({why})")
@@ -40,7 +40,7 @@ def portfolio_section(pf, log, row, names):
                   "|---|---|---|---|---|---|"]
         for t, p in pf.positions.items():
             v = p["qty"] * row[t]
-            lines.append(f"| {t} | {p['qty']} | {eur(p['cost'])} | {eur(row[t])} | {eur(v)} | "
+            lines.append(f"| {t} | {p['qty']:g} | {eur(p['cost'])} | {eur(row[t])} | {eur(v)} | "
                          f"{pct((row[t] / p['cost'] - 1) * 100)} |")
     tot = pf.totals
     lines += ["", f"Costi finora: commissioni {eur(tot['commissioni'])}, tasse {eur(tot['tasse'])}, "

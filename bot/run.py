@@ -14,7 +14,7 @@ from pathlib import Path
 import pandas as pd
 
 from . import risk
-from .portfolio import Order, Portfolio
+from .portfolio import Order, Portfolio, floor4
 from .report import write_reports
 from .strategies import STRATEGIES
 
@@ -43,7 +43,8 @@ def fill_pending(pf, opens, cfg, today, log):
         price *= (1 + slip) if p["side"] == "BUY" else (1 - slip)
         qty = p["qty"]
         if p["side"] == "BUY":
-            qty = min(qty, math.floor((pf.cash - cfg["commission_eur"]) / price))
+            room = (pf.cash - cfg["commission_eur"]) / price
+            qty = min(qty, floor4(room) if cfg.get("fractional") else math.floor(room))
         else:
             qty = min(qty, pf.qty(p["ticker"]))
         if qty <= 0:
@@ -56,6 +57,8 @@ def fill_pending(pf, opens, cfg, today, log):
 
 
 def run_portfolio(name, pcfg, cfg, prices, opens, today, market_problems):
+    # costi e regole di esecuzione propri del portafoglio (broker diverso), se indicati
+    cfg = {**cfg, **{k: pcfg[k] for k in ("commission_eur", "slippage_bps", "min_order_eur", "fractional") if k in pcfg}}
     path = ROOT / "state" / f"{name}.json"
     pf = Portfolio.load(path, name, pcfg["capital_eur"])
     row = prices.loc[today]
@@ -75,7 +78,8 @@ def run_portfolio(name, pcfg, cfg, prices, opens, today, market_problems):
         log["notes"].append(f"Nuovo anno: addebitata imposta di bollo di {bollo:.2f} €.")
 
     value = pf.value(row)
-    blocked, why = risk.check_portfolio(pf, value, cfg["risk"])
+    rules = {**cfg["risk"], **pcfg.get("risk", {})}  # limiti propri del portafoglio, se più stretti
+    blocked, why = risk.check_portfolio(pf, value, rules)
     if market_problems:
         blocked, why = True, "Dati di mercato non affidabili: " + " ".join(market_problems)
 
@@ -88,10 +92,10 @@ def run_portfolio(name, pcfg, cfg, prices, opens, today, market_problems):
         target, reason = STRATEGIES[pcfg["strategy"]](pcfg, prices, pf, today)
         log["decision"] = reason
         if target is not None:
-            orders = pf.plan(target, row, cfg["commission_eur"], cfg["min_order_eur"])
+            orders = pf.plan(target, row, cfg["commission_eur"], cfg["min_order_eur"], cfg.get("fractional", False))
             for o in orders:
                 o.reason = reason
-            ok, rejected = risk.filter_orders(orders, pf, row, cfg["risk"], cfg["commission_eur"])
+            ok, rejected = risk.filter_orders(orders, pf, row, rules, cfg["commission_eur"])
             # si decide dopo la chiusura: il prezzo di chiusura non è più disponibile,
             # gli ordini partono domani all'apertura
             pf.meta["pending"] = [{"ticker": o.ticker, "side": o.side, "qty": o.qty,
@@ -99,8 +103,8 @@ def run_portfolio(name, pcfg, cfg, prices, opens, today, market_problems):
             log["orders"] = ok
             log["rejected"] = rejected
             if not orders:
-                log["notes"].append("Nessun ordine utile: con quote intere questo è già il portafoglio più vicino all'obiettivo.")
-            if pcfg["strategy"] == "trend":
+                log["notes"].append("Nessun ordine utile: il portafoglio è già il più vicino possibile all'obiettivo.")
+            if pcfg["strategy"].startswith("trend"):
                 pf.meta["last_signal_month"] = today.strftime("%Y-%m")
 
     pf.history.append({"date": str(today.date()), "value": round(pf.value(row), 2)})
@@ -114,7 +118,7 @@ def main():
     args = ap.parse_args()
     cfg = json.loads(CONFIG.read_text())
     tickers = sorted({t for p in cfg["portfolios"].values()
-                      for t in (list(p.get("weights", {})) + [p.get("asset"), p.get("defensive")]) if t})
+                      for t in (list(p.get("weights", {})) + p.get("assets", []) + [p.get("asset"), p.get("defensive")]) if t})
     raw, opens = load_prices(tickers)
     today = raw.index[-1]
     problems = risk.check_market(raw, today, tickers, cfg["risk"], pd.Timestamp.now())

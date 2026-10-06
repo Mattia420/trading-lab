@@ -10,7 +10,11 @@
       "description": "60% azioni mondo, 25% titoli di Stato euro, 15% oro. Ribilancia se un peso si sposta di oltre 5 punti.",
       "strategy": "fixed_weights",
       "capital_eur": 2000,
-      "weights": {"SWDA.MI": 0.60, "SEGA.MI": 0.25, "SGLD.MI": 0.15},
+      "weights": {
+        "SWDA.MI": 0.6,
+        "SEGA.MI": 0.25,
+        "SGLD.MI": 0.15
+      },
       "drift_pp": 5
     },
     "trend_liquidita": {
@@ -28,10 +32,55 @@
       "asset": "XSPX.MI",
       "defensive": "XSPS.MI",
       "sma_months": 10
+    },
+    "reale_100": {
+      "description": "SPECCHIO DEL CONTO REALE (da attivare): 100 € una volta sola nel bilanciato 60/25/15 con PAC gratuito a quote frazionate. Si tiene; ribilancia solo se un peso si sposta di oltre 10 punti.",
+      "strategy": "fixed_weights",
+      "capital_eur": 100,
+      "weights": {
+        "SWDA.MI": 0.6,
+        "SEGA.MI": 0.25,
+        "SGLD.MI": 0.15
+      },
+      "drift_pp": 10,
+      "commission_eur": 0.0,
+      "fractional": true,
+      "min_order_eur": 5
+    },
+    "operativo_100": {
+      "description": "OPERATIVO (solo simulato): 100 € che entrano ed escono dal mercato ogni mese con il trend di Faber su 5 asset (USA, resto del mondo, titoli di Stato, immobiliare, materie prime); fuori dal trend si va sul monetario. 1 € a ordine, come un ordine singolo su un broker online.",
+      "strategy": "trend_multi",
+      "capital_eur": 100,
+      "assets": [
+        "XSPX.MI",
+        "EXUS.MI",
+        "SEGA.MI",
+        "IWDP.MI",
+        "CMOD.MI"
+      ],
+      "defensive": "XEON.MI",
+      "sma_months": 10,
+      "commission_eur": 1.0,
+      "fractional": true,
+      "min_order_eur": 5,
+      "risk": {
+        "max_drawdown_pct": 15,
+        "max_orders_per_day": 10
+      }
     }
   },
   "risk": {
-    "allowed_tickers": ["SWDA.MI", "SEGA.MI", "SGLD.MI", "XSPX.MI", "XEON.MI", "XSPS.MI"],
+    "allowed_tickers": [
+      "SWDA.MI",
+      "SEGA.MI",
+      "SGLD.MI",
+      "XSPX.MI",
+      "XEON.MI",
+      "XSPS.MI",
+      "EXUS.MI",
+      "IWDP.MI",
+      "CMOD.MI"
+    ],
     "max_orders_per_day": 6,
     "max_daily_loss_pct": 5,
     "max_drawdown_pct": 30,
@@ -44,6 +93,9 @@
     "SGLD.MI": "Invesco Physical Gold",
     "XSPX.MI": "Xtrackers S&P 500 Swap",
     "XEON.MI": "Xtrackers EUR Overnight Rate",
-    "XSPS.MI": "Xtrackers S&P 500 Inverse Daily"
+    "XSPS.MI": "Xtrackers S&P 500 Inverse Daily",
+    "EXUS.MI": "Xtrackers MSCI World ex USA",
+    "IWDP.MI": "iShares Developed Markets Property Yield",
+    "CMOD.MI": "Invesco Bloomberg Commodity"
   }
 }

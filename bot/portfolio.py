@@ -5,11 +5,16 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 
+def floor4(x):
+    """Arrotonda per difetto a 4 decimali (le quote frazionate dei broker)."""
+    return math.floor(x * 10000) / 10000
+
+
 @dataclass
 class Order:
     ticker: str
     side: str  # "BUY" o "SELL"
-    qty: int
+    qty: float  # intera per i conti normali, frazionata per i PAC
     price: float
     reason: str = ""
 
@@ -51,16 +56,21 @@ class Portfolio:
         return max([h["value"] for h in self.history] + [self.meta.get("capital", 0)])
 
     # --- ordini ---
-    def plan(self, target, row, commission, min_order):
+    def plan(self, target, row, commission, min_order, fractional=False):
         """Ordini a quote intere per avvicinarsi il più possibile ai pesi obiettivo.
 
         Parte arrotondando per difetto, poi aggiunge una quota alla volta allo strumento più
         sottopesato finché i contanti bastano e l'aggiunta riduce lo scarto dal peso obiettivo.
         Prima le vendite, poi gli acquisti."""
         value = self.value(row)
-        want = {t: math.floor(w * value / row[t]) for t, w in target.items()}
+        if fractional:
+            # quote frazionate (PAC dei broker online): si arriva al peso esatto, tolte le commissioni
+            investable = value - commission * (len(target) + len(self.positions))
+            want = {t: floor4(w * investable / row[t]) for t, w in target.items()}
+        else:
+            want = {t: math.floor(w * value / row[t]) for t, w in target.items()}
         budget = value - sum(q * row[t] for t, q in want.items()) - commission * (len(target) + len(self.positions))
-        while True:
+        while not fractional:
             gap = {t: target[t] * value - want[t] * row[t] for t in target}
             options = [t for t in target if row[t] <= budget and abs(gap[t] - row[t]) < abs(gap[t])]
             if not options:
@@ -71,12 +81,13 @@ class Portfolio:
 
         orders = []
         for t in list(self.positions):
-            excess = self.qty(t) - want.get(t, 0)
+            excess = round(self.qty(t) - want.get(t, 0), 4)
             if excess > 0 and (want.get(t, 0) == 0 or excess * row[t] >= min_order):
                 orders.append(Order(t, "SELL", excess, float(row[t])))
         cash = self.cash + sum(o.amount - commission for o in orders)
         for t in sorted(target, key=lambda t: -target[t]):
-            buy = min(want[t] - self.qty(t), math.floor((cash - commission) / row[t]))
+            room = (cash - commission) / row[t]
+            buy = min(round(want[t] - self.qty(t), 4), floor4(room) if fractional else math.floor(room))
             if buy > 0 and buy * row[t] >= min_order:
                 orders.append(Order(t, "BUY", buy, float(row[t])))
                 cash -= buy * row[t] + commission
@@ -98,8 +109,8 @@ class Portfolio:
                 tax = gain * tax_rate
             else:
                 self.totals["minus_non_compensabili"] -= gain
-            p["qty"] -= o.qty
-            if p["qty"] == 0:
+            p["qty"] = round(p["qty"] - o.qty, 6)
+            if p["qty"] <= 1e-6:
                 del self.positions[o.ticker]
             self.cash += o.amount - commission - tax
         self.totals["commissioni"] += commission

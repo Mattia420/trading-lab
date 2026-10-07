@@ -38,7 +38,8 @@ fa il giro giornaliero e salva diario e stato con un commit. Si può avviare anc
 | Portafoglio | Cosa fa | Soldi |
 |---|---|---|
 | `reale_100` | Specchio del conto reale: 100 € nel bilanciato 60/25/15 con PAC gratuito a quote frazionate, tenuto | Reali, da attivare dal proprietario |
-| `operativo_100` | Entra ed esce ogni mese con il trend di Faber su 5 asset, 1 € a ordine | Solo simulati |
+| `operativo_100` | Trend di Faber su 5 asset a costi ridotti: decide a trimestre, banda ±3%, esce in liquidità, 1 € a ordine | Solo simulati |
+| `operativo_100_mensile` | La versione originale (decide ogni mese, esce sul monetario), tenuta come confronto | Solo simulati |
 
 ## Comitato di controllo (adattato dalla guida "Five-Agent AI Trading Team")
 

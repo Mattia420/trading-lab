@@ -127,3 +127,32 @@ def test_trend_multi_splits_assets_and_uses_defensive():
     prices = pd.DataFrame({"A": up, "B": up[::-1].values, "D": 1.0}, index=idx)
     target, _ = trend_multi({"assets": ["A", "B"], "defensive": "D", "sma_months": 10}, prices, new_pf(), idx[-1])
     assert target == {"A": 0.5, "D": 0.5}
+
+
+def _trend_prices(last_gap):
+    """Prezzi piatti a 100 per un anno; l'ultima chiusura di settembre è 100 * (1 + last_gap)."""
+    idx = pd.bdate_range("2025-07-01", "2026-10-06")
+    s = pd.Series(100.0, index=idx)
+    s.loc["2026-09-30"] = 100 * (1 + last_gap)
+    return pd.DataFrame({"A": s})
+
+
+def test_band_ignores_small_moves_and_cash_means_no_order():
+    from bot.strategies import trend_multi
+    cfg = {"assets": ["A"], "defensive": "CASH", "sma_months": 10, "band_pct": 3, "months": [1, 4, 7, 10]}
+    pf = new_pf()
+    pf.meta["in_trend"] = {"A": True}
+    target, _ = trend_multi(cfg, _trend_prices(-0.01), pf, pd.Timestamp("2026-10-06"))
+    assert target == {"A": 1.0}  # -1% dalla media: dentro la banda, resta investito
+    pf.meta.pop("last_signal_month", None)
+    target, _ = trend_multi(cfg, _trend_prices(-0.05), pf, pd.Timestamp("2026-10-06"))
+    assert target == {"CASH": 1.0}  # -5%: esce, in liquidità
+
+
+def test_quarterly_decision_skips_other_months():
+    from bot.strategies import trend_multi
+    cfg = {"assets": ["A"], "defensive": "CASH", "sma_months": 10, "months": [1, 4, 7, 10]}
+    pf = new_pf()
+    pf.meta["in_trend"] = {"A": True}
+    target, why = trend_multi(cfg, _trend_prices(0.05), pf, pd.Timestamp("2026-11-03"))
+    assert target is None and "mesi" in why

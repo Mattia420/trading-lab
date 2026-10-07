@@ -92,6 +92,7 @@ def run_portfolio(name, pcfg, cfg, prices, opens, today, market_problems):
         target, reason = STRATEGIES[pcfg["strategy"]](pcfg, prices, pf, today)
         log["decision"] = reason
         if target is not None:
+            target = {t: w for t, w in target.items() if t != "CASH"}  # la liquidità non si compra
             orders = pf.plan(target, row, cfg["commission_eur"], cfg["min_order_eur"], cfg.get("fractional", False))
             for o in orders:
                 o.reason = reason
@@ -118,7 +119,7 @@ def main():
     args = ap.parse_args()
     cfg = json.loads(CONFIG.read_text())
     tickers = sorted({t for p in cfg["portfolios"].values()
-                      for t in (list(p.get("weights", {})) + p.get("assets", []) + [p.get("asset"), p.get("defensive")]) if t})
+                      for t in (list(p.get("weights", {})) + p.get("assets", []) + [p.get("asset"), p.get("defensive")]) if t and t != "CASH"})
     raw, opens = load_prices(tickers)
     today = raw.index[-1]
     problems = risk.check_market(raw, today, tickers, cfg["risk"], pd.Timestamp.now())

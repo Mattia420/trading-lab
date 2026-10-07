@@ -47,8 +47,8 @@
       "fractional": true,
       "min_order_eur": 5
     },
-    "operativo_100": {
-      "description": "OPERATIVO (solo simulato): 100 € che entrano ed escono dal mercato ogni mese con il trend di Faber su 5 asset (USA, resto del mondo, titoli di Stato, immobiliare, materie prime); fuori dal trend si va sul monetario. 1 € a ordine, come un ordine singolo su un broker online.",
+    "operativo_100_mensile": {
+      "description": "OPERATIVO MENSILE (solo simulato, confronto): 100 € che entrano ed escono dal mercato ogni mese con il trend di Faber su 5 asset (USA, resto del mondo, titoli di Stato, immobiliare, materie prime); fuori dal trend si va sul monetario. 1 € a ordine, come un ordine singolo su un broker online.",
       "strategy": "trend_multi",
       "capital_eur": 100,
       "assets": [
@@ -67,6 +67,34 @@
         "max_drawdown_pct": 15,
         "max_orders_per_day": 10
       }
+    },
+    "operativo_100": {
+      "description": "OPERATIVO A COSTI RIDOTTI (solo simulato): stesso trend di Faber su 5 asset, ma decide una volta a trimestre (gennaio, aprile, luglio, ottobre), cambia solo se il prezzo si allontana dalla media di almeno il 3% e quando esce resta in liquidità (nessun ordine sul monetario). 1 € a ordine.",
+      "strategy": "trend_multi",
+      "capital_eur": 100,
+      "assets": [
+        "XSPX.MI",
+        "EXUS.MI",
+        "SEGA.MI",
+        "IWDP.MI",
+        "CMOD.MI"
+      ],
+      "defensive": "CASH",
+      "sma_months": 10,
+      "commission_eur": 1.0,
+      "fractional": true,
+      "min_order_eur": 5,
+      "risk": {
+        "max_drawdown_pct": 15,
+        "max_orders_per_day": 10
+      },
+      "band_pct": 3,
+      "months": [
+        1,
+        4,
+        7,
+        10
+      ]
     }
   },
   "risk": {

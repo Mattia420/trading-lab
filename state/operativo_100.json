@@ -1,0 +1,53 @@
+{
+ "name": "operativo_100",
+ "cash": 100,
+ "positions": {},
+ "history": [
+  {
+   "date": "2026-10-07",
+   "value": 100
+  }
+ ],
+ "trades": [],
+ "totals": {
+  "commissioni": 0.0,
+  "tasse": 0.0,
+  "bollo": 0.0,
+  "minus_non_compensabili": 0.0
+ },
+ "meta": {
+  "capital": 100,
+  "in_trend": {
+   "XSPX.MI": true,
+   "EXUS.MI": true,
+   "SEGA.MI": false,
+   "IWDP.MI": false,
+   "CMOD.MI": true
+  },
+  "pending": [
+   {
+    "ticker": "XSPX.MI",
+    "side": "BUY",
+    "qty": 0.1379,
+    "reason": "Fine 09/2026, banda \u00b13%: XSPX.MI dentro (+9.7% dalla media); EXUS.MI dentro (+5.1% dalla media); SEGA.MI fuori (-3.2% dalla media); IWDP.MI fuori (-1.7% dalla media); CMOD.MI dentro (+13.1% dalla media).",
+    "decided": "2026-10-07"
+   },
+   {
+    "ticker": "EXUS.MI",
+    "side": "BUY",
+    "qty": 0.4851,
+    "reason": "Fine 09/2026, banda \u00b13%: XSPX.MI dentro (+9.7% dalla media); EXUS.MI dentro (+5.1% dalla media); SEGA.MI fuori (-3.2% dalla media); IWDP.MI fuori (-1.7% dalla media); CMOD.MI dentro (+13.1% dalla media).",
+    "decided": "2026-10-07"
+   },
+   {
+    "ticker": "CMOD.MI",
+    "side": "BUY",
+    "qty": 0.6093,
+    "reason": "Fine 09/2026, banda \u00b13%: XSPX.MI dentro (+9.7% dalla media); EXUS.MI dentro (+5.1% dalla media); SEGA.MI fuori (-3.2% dalla media); IWDP.MI fuori (-1.7% dalla media); CMOD.MI dentro (+13.1% dalla media).",
+    "decided": "2026-10-07"
+   }
+  ],
+  "last_signal_month": "2026-10",
+  "last_run": "2026-10-07"
+ }
+}

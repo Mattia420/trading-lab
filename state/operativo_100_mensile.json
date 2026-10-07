@@ -1,53 +1,81 @@
 {
  "name": "operativo_100_mensile",
- "cash": 100,
- "positions": {},
+ "cash": 0.0003905581035752448,
+ "positions": {
+  "XEON.MI": {
+   "qty": 0.2552,
+   "cost": 150.5647209472656
+  },
+  "XSPX.MI": {
+   "qty": 0.1363,
+   "cost": 141.51136511230467
+  },
+  "EXUS.MI": {
+   "qty": 0.4755,
+   "cost": 40.230188625335686
+  },
+  "CMOD.MI": {
+   "qty": 0.6028,
+   "cost": 31.781749999999995
+  }
+ },
  "history": [
   {
    "date": "2026-10-06",
    "value": 100
+  },
+  {
+   "date": "2026-10-07",
+   "value": 95.76
   }
  ],
- "trades": [],
+ "trades": [
+  {
+   "date": "2026-10-07",
+   "ticker": "XEON.MI",
+   "side": "BUY",
+   "qty": 0.2552,
+   "price": 150.5647,
+   "tax": 0.0,
+   "reason": "Fine 09/2026: XSPX.MI sopra la media (137.41 vs 125.25); EXUS.MI sopra la media (39.96 vs 38.03); SEGA.MI sotto la media (104.21 vs 107.61); IWDP.MI sotto la media (21.16 vs 21.51); CMOD.MI sopra la media (31.25 vs 27.64)."
+  },
+  {
+   "date": "2026-10-07",
+   "ticker": "XSPX.MI",
+   "side": "BUY",
+   "qty": 0.1363,
+   "price": 141.5114,
+   "tax": 0.0,
+   "reason": "Fine 09/2026: XSPX.MI sopra la media (137.41 vs 125.25); EXUS.MI sopra la media (39.96 vs 38.03); SEGA.MI sotto la media (104.21 vs 107.61); IWDP.MI sotto la media (21.16 vs 21.51); CMOD.MI sopra la media (31.25 vs 27.64)."
+  },
+  {
+   "date": "2026-10-07",
+   "ticker": "EXUS.MI",
+   "side": "BUY",
+   "qty": 0.4755,
+   "price": 40.2302,
+   "tax": 0.0,
+   "reason": "Fine 09/2026: XSPX.MI sopra la media (137.41 vs 125.25); EXUS.MI sopra la media (39.96 vs 38.03); SEGA.MI sotto la media (104.21 vs 107.61); IWDP.MI sotto la media (21.16 vs 21.51); CMOD.MI sopra la media (31.25 vs 27.64)."
+  },
+  {
+   "date": "2026-10-07",
+   "ticker": "CMOD.MI",
+   "side": "BUY",
+   "qty": 0.6028,
+   "price": 31.7817,
+   "tax": 0.0,
+   "reason": "Fine 09/2026: XSPX.MI sopra la media (137.41 vs 125.25); EXUS.MI sopra la media (39.96 vs 38.03); SEGA.MI sotto la media (104.21 vs 107.61); IWDP.MI sotto la media (21.16 vs 21.51); CMOD.MI sopra la media (31.25 vs 27.64)."
+  }
+ ],
  "totals": {
-  "commissioni": 0.0,
+  "commissioni": 4.0,
   "tasse": 0.0,
   "bollo": 0.0,
   "minus_non_compensabili": 0.0
  },
  "meta": {
   "capital": 100,
-  "pending": [
-   {
-    "ticker": "XEON.MI",
-    "side": "BUY",
-    "qty": 0.2552,
-    "reason": "Fine 09/2026: XSPX.MI sopra la media (137.41 vs 125.25); EXUS.MI sopra la media (39.96 vs 38.03); SEGA.MI sotto la media (104.21 vs 107.61); IWDP.MI sotto la media (21.16 vs 21.51); CMOD.MI sopra la media (31.25 vs 27.64).",
-    "decided": "2026-10-06"
-   },
-   {
-    "ticker": "XSPX.MI",
-    "side": "BUY",
-    "qty": 0.1363,
-    "reason": "Fine 09/2026: XSPX.MI sopra la media (137.41 vs 125.25); EXUS.MI sopra la media (39.96 vs 38.03); SEGA.MI sotto la media (104.21 vs 107.61); IWDP.MI sotto la media (21.16 vs 21.51); CMOD.MI sopra la media (31.25 vs 27.64).",
-    "decided": "2026-10-06"
-   },
-   {
-    "ticker": "EXUS.MI",
-    "side": "BUY",
-    "qty": 0.4755,
-    "reason": "Fine 09/2026: XSPX.MI sopra la media (137.41 vs 125.25); EXUS.MI sopra la media (39.96 vs 38.03); SEGA.MI sotto la media (104.21 vs 107.61); IWDP.MI sotto la media (21.16 vs 21.51); CMOD.MI sopra la media (31.25 vs 27.64).",
-    "decided": "2026-10-06"
-   },
-   {
-    "ticker": "CMOD.MI",
-    "side": "BUY",
-    "qty": 0.6121,
-    "reason": "Fine 09/2026: XSPX.MI sopra la media (137.41 vs 125.25); EXUS.MI sopra la media (39.96 vs 38.03); SEGA.MI sotto la media (104.21 vs 107.61); IWDP.MI sotto la media (21.16 vs 21.51); CMOD.MI sopra la media (31.25 vs 27.64).",
-    "decided": "2026-10-06"
-   }
-  ],
   "last_signal_month": "2026-10",
-  "last_run": "2026-10-06"
+  "last_run": "2026-10-07"
  }
 }

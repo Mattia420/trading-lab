@@ -1,14 +1,59 @@
 {
  "name": "reale_100",
- "cash": 100,
- "positions": {},
+ "cash": 0.08876796857987657,
+ "positions": {
+  "SWDA.MI": {
+   "qty": 0.455,
+   "cost": 131.94180755615233
+  },
+  "SEGA.MI": {
+   "qty": 0.2385,
+   "cost": 104.67456969451904
+  },
+  "SGLD.MI": {
+   "qty": 0.0421,
+   "cost": 354.2238651123046
+  }
+ },
  "history": [
   {
    "date": "2026-10-06",
    "value": 100
+  },
+  {
+   "date": "2026-10-07",
+   "value": 99.71
   }
  ],
- "trades": [],
+ "trades": [
+  {
+   "date": "2026-10-07",
+   "ticker": "SWDA.MI",
+   "side": "BUY",
+   "qty": 0.455,
+   "price": 131.9418,
+   "tax": 0.0,
+   "reason": "Primo investimento: compro i pesi obiettivo."
+  },
+  {
+   "date": "2026-10-07",
+   "ticker": "SEGA.MI",
+   "side": "BUY",
+   "qty": 0.2385,
+   "price": 104.6746,
+   "tax": 0.0,
+   "reason": "Primo investimento: compro i pesi obiettivo."
+  },
+  {
+   "date": "2026-10-07",
+   "ticker": "SGLD.MI",
+   "side": "BUY",
+   "qty": 0.0421,
+   "price": 354.2239,
+   "tax": 0.0,
+   "reason": "Primo investimento: compro i pesi obiettivo."
+  }
+ ],
  "totals": {
   "commissioni": 0.0,
   "tasse": 0.0,
@@ -17,29 +62,6 @@
  },
  "meta": {
   "capital": 100,
-  "pending": [
-   {
-    "ticker": "SWDA.MI",
-    "side": "BUY",
-    "qty": 0.455,
-    "reason": "Primo investimento: compro i pesi obiettivo.",
-    "decided": "2026-10-06"
-   },
-   {
-    "ticker": "SEGA.MI",
-    "side": "BUY",
-    "qty": 0.2385,
-    "reason": "Primo investimento: compro i pesi obiettivo.",
-    "decided": "2026-10-06"
-   },
-   {
-    "ticker": "SGLD.MI",
-    "side": "BUY",
-    "qty": 0.0421,
-    "reason": "Primo investimento: compro i pesi obiettivo.",
-    "decided": "2026-10-06"
-   }
-  ],
-  "last_run": "2026-10-06"
+  "last_run": "2026-10-07"
  }
 }

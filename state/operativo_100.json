@@ -79,6 +79,10 @@
   {
    "date": "2026-10-30",
    "value": 96.68
+  },
+  {
+   "date": "2026-11-03",
+   "value": NaN
   }
  ],
  "trades": [
@@ -126,6 +130,6 @@
    "CMOD.MI": true
   },
   "last_signal_month": "2026-10",
-  "last_run": "2026-10-30"
+  "last_run": "2026-11-03"
  }
 }

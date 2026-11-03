@@ -87,6 +87,10 @@
   {
    "date": "2026-10-30",
    "value": 95.51
+  },
+  {
+   "date": "2026-11-03",
+   "value": NaN
   }
  ],
  "trades": [
@@ -136,6 +140,6 @@
  "meta": {
   "capital": 100,
   "last_signal_month": "2026-10",
-  "last_run": "2026-10-30"
+  "last_run": "2026-11-03"
  }
 }

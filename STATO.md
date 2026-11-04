@@ -1,102 +1,108 @@
-# Stato del bot — 03/11/2026
+# Stato del bot — 04/11/2026
 
 Modalità: **paper** (soldi finti, prezzi veri di chiusura). Commissione 5,00 € a ordine, slippage 10 punti base, tasse 26% sulle plusvalenze. Gli ordini decisi la sera si eseguono all'apertura del giorno dopo.
 
-> ⚠️ **Anomalie sui dati, nessun ordine eseguito:**
-> - CMOD.MI: manca il prezzo di chiusura del 03/11/2026.
-
 | Portafoglio | Valore | Dall'inizio | Ordini |
 |---|---|---|---|
-| bilanciato | 1.966,20 € | -1,69% | 3 |
-| trend_liquidita | 1.996,12 € | -0,19% | 1 |
-| trend_short | 1.996,12 € | -0,19% | 1 |
-| reale_100 | 98,14 € | -1,86% | 3 |
-| operativo_100_mensile | nan € | +nan% | 4 |
-| operativo_100 | nan € | +nan% | 3 |
+| bilanciato | 1.991,00 € | -0,45% | 3 |
+| trend_liquidita | 2.012,92 € | +0,65% | 1 |
+| trend_short | 2.012,92 € | +0,65% | 1 |
+| reale_100 | 99,34 € | -0,66% | 3 |
+| operativo_100_mensile | 94,87 € | -5,13% | 4 |
+| operativo_100 | 96,03 € | -3,97% | 3 |
 
 ## bilanciato
 _60% azioni mondo, 25% titoli di Stato euro, 15% oro. Ribilancia se un peso si sposta di oltre 5 punti._
 
-- **Valore:** 1.966,20 € (oggi -0,21%, dall'inizio -1,69%, dal massimo -2,13%)
+- **Valore:** 1.991,00 € (oggi +1,26%, dall'inizio -0,45%, dal massimo -0,90%)
 - **Liquidità:** 45,89 €
-- **Decisione:** BLOCCATO: Dati di mercato non affidabili: CMOD.MI: manca il prezzo di chiusura del 03/11/2026.
+- **Decisione:** Pesi dentro la banda (scarto massimo -3.7 punti su SEGA.MI): nessuna operazione.
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| SWDA.MI | 9 | 128,92 € | 128,96 € | 1.160,64 € | +0,03% |
-| SEGA.MI | 4 | 104,39 € | 105,48 € | 421,92 € | +1,04% |
-| SGLD.MI | 1 | 361,27 € | 337,75 € | 337,75 € | -6,51% |
+| SWDA.MI | 9 | 128,92 € | 130,52 € | 1.174,68 € | +1,24% |
+| SEGA.MI | 4 | 104,39 € | 106,04 € | 424,16 € | +1,58% |
+| SGLD.MI | 1 | 361,27 € | 346,27 € | 346,27 € | -4,15% |
 
 Costi finora: commissioni 15,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 3.
 
 ## trend_liquidita
 _S&P 500 quando è sopra la media di 10 mesi, altrimenti monetario in euro. Decide a inizio mese._
 
-- **Valore:** 1.996,12 € (oggi -0,51%, dall'inizio -0,19%, dal massimo -2,64%)
+- **Valore:** 2.012,92 € (oggi +0,84%, dall'inizio +0,65%, dal massimo -1,82%)
 - **Liquidità:** 77,28 €
-- **Decisione:** BLOCCATO: Dati di mercato non affidabili: CMOD.MI: manca il prezzo di chiusura del 03/11/2026.
+- **Decisione:** XSPX.MI a fine 10/2026 vale 137.79, sopra la media a 10 mesi (127.23): trend positivo, sto sull'azionario.
+- Nessun ordine utile: il portafoglio è già il più vicino possibile all'obiettivo.
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| XSPX.MI | 14 | 136,98 € | 137,06 € | 1.918,84 € | +0,06% |
+| XSPX.MI | 14 | 136,98 € | 138,26 € | 1.935,64 € | +0,93% |
 
 Costi finora: commissioni 5,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 1.
 
 ## trend_short
 _S&P 500 quando è sopra la media di 10 mesi, altrimenti ETF inverso (guadagna se la borsa scende). Decide a inizio mese._
 
-- **Valore:** 1.996,12 € (oggi -0,51%, dall'inizio -0,19%, dal massimo -2,64%)
+- **Valore:** 2.012,92 € (oggi +0,84%, dall'inizio +0,65%, dal massimo -1,82%)
 - **Liquidità:** 77,28 €
-- **Decisione:** BLOCCATO: Dati di mercato non affidabili: CMOD.MI: manca il prezzo di chiusura del 03/11/2026.
+- **Decisione:** XSPX.MI a fine 10/2026 vale 137.79, sopra la media a 10 mesi (127.23): trend positivo, sto sull'azionario.
+- Nessun ordine utile: il portafoglio è già il più vicino possibile all'obiettivo.
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| XSPX.MI | 14 | 136,98 € | 137,06 € | 1.918,84 € | +0,06% |
+| XSPX.MI | 14 | 136,98 € | 138,26 € | 1.935,64 € | +0,93% |
 
 Costi finora: commissioni 5,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 1.
 
 ## reale_100
 _SPECCHIO DEL CONTO REALE (da attivare): 100 € una volta sola nel bilanciato 60/25/15 con PAC gratuito a quote frazionate. Si tiene; ribilancia solo se un peso si sposta di oltre 10 punti._
 
-- **Valore:** 98,14 € (oggi -0,22%, dall'inizio -1,86%, dal massimo -1,95%)
+- **Valore:** 99,34 € (oggi +1,23%, dall'inizio -0,66%, dal massimo -0,75%)
 - **Liquidità:** 0,09 €
-- **Decisione:** BLOCCATO: Dati di mercato non affidabili: CMOD.MI: manca il prezzo di chiusura del 03/11/2026.
+- **Decisione:** Pesi dentro la banda (scarto massimo +0.5 punti su SEGA.MI): nessuna operazione.
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| SWDA.MI | 0.455 | 131,94 € | 128,96 € | 58,68 € | -2,26% |
-| SEGA.MI | 0.2385 | 104,67 € | 105,48 € | 25,16 € | +0,77% |
-| SGLD.MI | 0.0421 | 354,22 € | 337,75 € | 14,22 € | -4,65% |
+| SWDA.MI | 0.455 | 131,94 € | 130,52 € | 59,39 € | -1,08% |
+| SEGA.MI | 0.2385 | 104,67 € | 106,04 € | 25,29 € | +1,30% |
+| SGLD.MI | 0.0421 | 354,22 € | 346,27 € | 14,58 € | -2,25% |
 
 Costi finora: commissioni 0,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 3.
 
 ## operativo_100_mensile
 _OPERATIVO MENSILE (solo simulato, confronto): 100 € che entrano ed escono dal mercato ogni mese con il trend di Faber su 5 asset (USA, resto del mondo, titoli di Stato, immobiliare, materie prime); fuori dal trend si va sul monetario. 1 € a ordine, come un ordine singolo su un broker online._
 
-- **Valore:** nan € (oggi +nan%, dall'inizio +nan%, dal massimo +nan%)
+- **Valore:** 94,87 € (oggi +nan%, dall'inizio -5,13%, dal massimo -5,13%)
 - **Liquidità:** 0,00 €
-- **Decisione:** BLOCCATO: Dati di mercato non affidabili: CMOD.MI: manca il prezzo di chiusura del 03/11/2026.
+- **Decisione:** Fine 10/2026: XSPX.MI dentro (+8.3% dalla media); EXUS.MI dentro (+4.9% dalla media); SEGA.MI fuori (-1.9% dalla media); IWDP.MI dentro (+1.7% dalla media); CMOD.MI dentro (+10.9% dalla media).
+
+**Decisi stasera, da eseguire domani all'apertura (prezzo stimato)**
+
+| Ordine | Strumento | Quote | Prezzo | Importo |
+|---|---|---|---|---|
+| Vendi | XEON.MI (Xtrackers EUR Overnight Rate) | 0.1413 | 150,68 € | 21,29 € |
+| Compra | IWDP.MI (iShares Developed Markets Property Yield) | 0.7634 | 22,50 € | 17,17 € |
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| XEON.MI | 0.2552 | 150,56 € | 150,69 € | 38,45 € | +0,08% |
-| XSPX.MI | 0.1363 | 141,51 € | 137,06 € | 18,68 € | -3,15% |
-| EXUS.MI | 0.4755 | 40,23 € | 40,30 € | 19,16 € | +0,17% |
-| CMOD.MI | 0.6028 | 31,78 € | nan € | nan € | +nan% |
+| XEON.MI | 0.2552 | 150,56 € | 150,68 € | 38,45 € | +0,07% |
+| XSPX.MI | 0.1363 | 141,51 € | 138,26 € | 18,84 € | -2,30% |
+| EXUS.MI | 0.4755 | 40,23 € | 40,90 € | 19,45 € | +1,68% |
+| CMOD.MI | 0.6028 | 31,78 € | 30,06 € | 18,12 € | -5,42% |
 
 Costi finora: commissioni 4,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 4.
 
 ## operativo_100
 _OPERATIVO A COSTI RIDOTTI (solo simulato): stesso trend di Faber su 5 asset, ma decide una volta a trimestre (gennaio, aprile, luglio, ottobre), cambia solo se il prezzo si allontana dalla media di almeno il 3% e quando esce resta in liquidità (nessun ordine sul monetario). 1 € a ordine._
 
-- **Valore:** nan € (oggi +nan%, dall'inizio +nan%, dal massimo +nan%)
+- **Valore:** 96,03 € (oggi +nan%, dall'inizio -3,97%, dal massimo -3,97%)
 - **Liquidità:** 38,81 €
-- **Decisione:** BLOCCATO: Dati di mercato non affidabili: CMOD.MI: manca il prezzo di chiusura del 03/11/2026.
+- **Decisione:** Decisione solo nei mesi [1, 4, 7, 10]: questo mese non si opera.
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| XSPX.MI | 0.1379 | 140,59 € | 137,06 € | 18,90 € | -2,51% |
-| EXUS.MI | 0.4851 | 39,96 € | 40,30 € | 19,55 € | +0,85% |
-| CMOD.MI | 0.6093 | 31,88 € | nan € | nan € | +nan% |
+| XSPX.MI | 0.1379 | 140,59 € | 138,26 € | 19,07 € | -1,66% |
+| EXUS.MI | 0.4851 | 39,96 € | 40,90 € | 19,84 € | +2,37% |
+| CMOD.MI | 0.6093 | 31,88 € | 30,06 € | 18,32 € | -5,70% |
 
 Costi finora: commissioni 3,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 3.

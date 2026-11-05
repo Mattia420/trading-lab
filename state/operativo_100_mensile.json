@@ -1,9 +1,9 @@
 {
  "name": "operativo_100_mensile",
- "cash": 0.0003905581035752448,
+ "cash": 1.8017930619758786,
  "positions": {
   "XEON.MI": {
-   "qty": 0.2552,
+   "qty": 0.1139,
    "cost": 150.5647209472656
   },
   "XSPX.MI": {
@@ -17,6 +17,10 @@
   "CMOD.MI": {
    "qty": 0.6028,
    "cost": 31.781749999999995
+  },
+  "IWDP.MI": {
+   "qty": 0.7634,
+   "cost": 22.88786477088928
   }
  },
  "history": [
@@ -95,6 +99,10 @@
   {
    "date": "2026-11-04",
    "value": 94.87
+  },
+  {
+   "date": "2026-11-05",
+   "value": 91.93
   }
  ],
  "trades": [
@@ -133,40 +141,42 @@
    "price": 31.7817,
    "tax": 0.0,
    "reason": "Fine 09/2026: XSPX.MI sopra la media (137.41 vs 125.25); EXUS.MI sopra la media (39.96 vs 38.03); SEGA.MI sotto la media (104.21 vs 107.61); IWDP.MI sotto la media (21.16 vs 21.51); CMOD.MI sopra la media (31.25 vs 27.64)."
+  },
+  {
+   "date": "2026-11-05",
+   "ticker": "XEON.MI",
+   "side": "SELL",
+   "qty": 0.1413,
+   "price": 150.5591,
+   "tax": 0.0,
+   "reason": "Fine 10/2026: XSPX.MI dentro (+8.3% dalla media); EXUS.MI dentro (+4.9% dalla media); SEGA.MI fuori (-1.9% dalla media); IWDP.MI dentro (+1.7% dalla media); CMOD.MI dentro (+10.9% dalla media)."
+  },
+  {
+   "date": "2026-11-05",
+   "ticker": "IWDP.MI",
+   "side": "BUY",
+   "qty": 0.7634,
+   "price": 22.8879,
+   "tax": 0.0,
+   "reason": "Fine 10/2026: XSPX.MI dentro (+8.3% dalla media); EXUS.MI dentro (+4.9% dalla media); SEGA.MI fuori (-1.9% dalla media); IWDP.MI dentro (+1.7% dalla media); CMOD.MI dentro (+10.9% dalla media)."
   }
  ],
  "totals": {
-  "commissioni": 4.0,
+  "commissioni": 6.0,
   "tasse": 0.0,
   "bollo": 0.0,
-  "minus_non_compensabili": 0.0
+  "minus_non_compensabili": 0.0007965998794526428
  },
  "meta": {
   "capital": 100,
   "last_signal_month": "2026-11",
-  "last_run": "2026-11-04",
+  "last_run": "2026-11-05",
   "in_trend": {
    "XSPX.MI": true,
    "EXUS.MI": true,
    "SEGA.MI": false,
    "IWDP.MI": true,
    "CMOD.MI": true
-  },
-  "pending": [
-   {
-    "ticker": "XEON.MI",
-    "side": "SELL",
-    "qty": 0.1413,
-    "reason": "Fine 10/2026: XSPX.MI dentro (+8.3% dalla media); EXUS.MI dentro (+4.9% dalla media); SEGA.MI fuori (-1.9% dalla media); IWDP.MI dentro (+1.7% dalla media); CMOD.MI dentro (+10.9% dalla media).",
-    "decided": "2026-11-04"
-   },
-   {
-    "ticker": "IWDP.MI",
-    "side": "BUY",
-    "qty": 0.7634,
-    "reason": "Fine 10/2026: XSPX.MI dentro (+8.3% dalla media); EXUS.MI dentro (+4.9% dalla media); SEGA.MI fuori (-1.9% dalla media); IWDP.MI dentro (+1.7% dalla media); CMOD.MI dentro (+10.9% dalla media).",
-    "decided": "2026-11-04"
-   }
-  ]
+  }
  }
 }

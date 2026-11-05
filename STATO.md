@@ -1,108 +1,107 @@
-# Stato del bot — 04/11/2026
+# Stato del bot — 05/11/2026
 
 Modalità: **paper** (soldi finti, prezzi veri di chiusura). Commissione 5,00 € a ordine, slippage 10 punti base, tasse 26% sulle plusvalenze. Gli ordini decisi la sera si eseguono all'apertura del giorno dopo.
 
 | Portafoglio | Valore | Dall'inizio | Ordini |
 |---|---|---|---|
-| bilanciato | 1.991,00 € | -0,45% | 3 |
-| trend_liquidita | 2.012,92 € | +0,65% | 1 |
-| trend_short | 2.012,92 € | +0,65% | 1 |
-| reale_100 | 99,34 € | -0,66% | 3 |
-| operativo_100_mensile | 94,87 € | -5,13% | 4 |
-| operativo_100 | 96,03 € | -3,97% | 3 |
+| bilanciato | 1.971,33 € | -1,43% | 3 |
+| trend_liquidita | 1.966,44 € | -1,68% | 1 |
+| trend_short | 1.966,44 € | -1,68% | 1 |
+| reale_100 | 98,30 € | -1,70% | 3 |
+| operativo_100_mensile | 91,93 € | -8,07% | 6 |
+| operativo_100 | 95,37 € | -4,63% | 3 |
 
 ## bilanciato
 _60% azioni mondo, 25% titoli di Stato euro, 15% oro. Ribilancia se un peso si sposta di oltre 5 punti._
 
-- **Valore:** 1.991,00 € (oggi +1,26%, dall'inizio -0,45%, dal massimo -0,90%)
+- **Valore:** 1.971,33 € (oggi -0,99%, dall'inizio -1,43%, dal massimo -1,88%)
 - **Liquidità:** 45,89 €
-- **Decisione:** Pesi dentro la banda (scarto massimo -3.7 punti su SEGA.MI): nessuna operazione.
+- **Decisione:** Pesi dentro la banda (scarto massimo -3.5 punti su SEGA.MI): nessuna operazione.
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| SWDA.MI | 9 | 128,92 € | 130,52 € | 1.174,68 € | +1,24% |
-| SEGA.MI | 4 | 104,39 € | 106,04 € | 424,16 € | +1,58% |
-| SGLD.MI | 1 | 361,27 € | 346,27 € | 346,27 € | -4,15% |
+| SWDA.MI | 9 | 128,92 € | 127,57 € | 1.148,13 € | -1,05% |
+| SEGA.MI | 4 | 104,39 € | 106,15 € | 424,60 € | +1,69% |
+| SGLD.MI | 1 | 361,27 € | 352,71 € | 352,71 € | -2,37% |
 
 Costi finora: commissioni 15,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 3.
 
 ## trend_liquidita
 _S&P 500 quando è sopra la media di 10 mesi, altrimenti monetario in euro. Decide a inizio mese._
 
-- **Valore:** 2.012,92 € (oggi +0,84%, dall'inizio +0,65%, dal massimo -1,82%)
+- **Valore:** 1.966,44 € (oggi -2,31%, dall'inizio -1,68%, dal massimo -4,09%)
 - **Liquidità:** 77,28 €
-- **Decisione:** XSPX.MI a fine 10/2026 vale 137.79, sopra la media a 10 mesi (127.23): trend positivo, sto sull'azionario.
-- Nessun ordine utile: il portafoglio è già il più vicino possibile all'obiettivo.
+- **Decisione:** Segnale già valutato questo mese: si ricontrolla il primo giorno del prossimo.
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| XSPX.MI | 14 | 136,98 € | 138,26 € | 1.935,64 € | +0,93% |
+| XSPX.MI | 14 | 136,98 € | 134,94 € | 1.889,16 € | -1,49% |
 
 Costi finora: commissioni 5,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 1.
 
 ## trend_short
 _S&P 500 quando è sopra la media di 10 mesi, altrimenti ETF inverso (guadagna se la borsa scende). Decide a inizio mese._
 
-- **Valore:** 2.012,92 € (oggi +0,84%, dall'inizio +0,65%, dal massimo -1,82%)
+- **Valore:** 1.966,44 € (oggi -2,31%, dall'inizio -1,68%, dal massimo -4,09%)
 - **Liquidità:** 77,28 €
-- **Decisione:** XSPX.MI a fine 10/2026 vale 137.79, sopra la media a 10 mesi (127.23): trend positivo, sto sull'azionario.
-- Nessun ordine utile: il portafoglio è già il più vicino possibile all'obiettivo.
+- **Decisione:** Segnale già valutato questo mese: si ricontrolla il primo giorno del prossimo.
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| XSPX.MI | 14 | 136,98 € | 138,26 € | 1.935,64 € | +0,93% |
+| XSPX.MI | 14 | 136,98 € | 134,94 € | 1.889,16 € | -1,49% |
 
 Costi finora: commissioni 5,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 1.
 
 ## reale_100
 _SPECCHIO DEL CONTO REALE (da attivare): 100 € una volta sola nel bilanciato 60/25/15 con PAC gratuito a quote frazionate. Si tiene; ribilancia solo se un peso si sposta di oltre 10 punti._
 
-- **Valore:** 99,34 € (oggi +1,23%, dall'inizio -0,66%, dal massimo -0,75%)
+- **Valore:** 98,30 € (oggi -1,05%, dall'inizio -1,70%, dal massimo -1,79%)
 - **Liquidità:** 0,09 €
-- **Decisione:** Pesi dentro la banda (scarto massimo +0.5 punti su SEGA.MI): nessuna operazione.
+- **Decisione:** Pesi dentro la banda (scarto massimo -1.0 punti su SWDA.MI): nessuna operazione.
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| SWDA.MI | 0.455 | 131,94 € | 130,52 € | 59,39 € | -1,08% |
-| SEGA.MI | 0.2385 | 104,67 € | 106,04 € | 25,29 € | +1,30% |
-| SGLD.MI | 0.0421 | 354,22 € | 346,27 € | 14,58 € | -2,25% |
+| SWDA.MI | 0.455 | 131,94 € | 127,57 € | 58,04 € | -3,31% |
+| SEGA.MI | 0.2385 | 104,67 € | 106,15 € | 25,32 € | +1,41% |
+| SGLD.MI | 0.0421 | 354,22 € | 352,71 € | 14,85 € | -0,43% |
 
 Costi finora: commissioni 0,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 3.
 
 ## operativo_100_mensile
 _OPERATIVO MENSILE (solo simulato, confronto): 100 € che entrano ed escono dal mercato ogni mese con il trend di Faber su 5 asset (USA, resto del mondo, titoli di Stato, immobiliare, materie prime); fuori dal trend si va sul monetario. 1 € a ordine, come un ordine singolo su un broker online._
 
-- **Valore:** 94,87 € (oggi +nan%, dall'inizio -5,13%, dal massimo -5,13%)
-- **Liquidità:** 0,00 €
-- **Decisione:** Fine 10/2026: XSPX.MI dentro (+8.3% dalla media); EXUS.MI dentro (+4.9% dalla media); SEGA.MI fuori (-1.9% dalla media); IWDP.MI dentro (+1.7% dalla media); CMOD.MI dentro (+10.9% dalla media).
+- **Valore:** 91,93 € (oggi -3,10%, dall'inizio -8,07%, dal massimo -8,07%)
+- **Liquidità:** 1,80 €
+- **Decisione:** Segnale già valutato questo mese: si ricontrolla il primo giorno del prossimo.
 
-**Decisi stasera, da eseguire domani all'apertura (prezzo stimato)**
+**Eseguiti oggi all'apertura (ordini decisi ieri sera)**
 
 | Ordine | Strumento | Quote | Prezzo | Importo |
 |---|---|---|---|---|
-| Vendi | XEON.MI (Xtrackers EUR Overnight Rate) | 0.1413 | 150,68 € | 21,29 € |
-| Compra | IWDP.MI (iShares Developed Markets Property Yield) | 0.7634 | 22,50 € | 17,17 € |
+| Vendi | XEON.MI (Xtrackers EUR Overnight Rate) | 0.1413 | 150,56 € | 21,27 € |
+| Compra | IWDP.MI (iShares Developed Markets Property Yield) | 0.7634 | 22,89 € | 17,47 € |
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| XEON.MI | 0.2552 | 150,56 € | 150,68 € | 38,45 € | +0,07% |
-| XSPX.MI | 0.1363 | 141,51 € | 138,26 € | 18,84 € | -2,30% |
-| EXUS.MI | 0.4755 | 40,23 € | 40,90 € | 19,45 € | +1,68% |
-| CMOD.MI | 0.6028 | 31,78 € | 30,06 € | 18,12 € | -5,42% |
+| XEON.MI | 0.1139 | 150,56 € | 150,72 € | 17,17 € | +0,10% |
+| XSPX.MI | 0.1363 | 141,51 € | 134,94 € | 18,39 € | -4,64% |
+| EXUS.MI | 0.4755 | 40,23 € | 40,51 € | 19,26 € | +0,71% |
+| CMOD.MI | 0.6028 | 31,78 € | 30,03 € | 18,11 € | -5,50% |
+| IWDP.MI | 0.7634 | 22,89 € | 22,53 € | 17,20 € | -1,56% |
 
-Costi finora: commissioni 4,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 4.
+Costi finora: commissioni 6,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 6.
 
 ## operativo_100
 _OPERATIVO A COSTI RIDOTTI (solo simulato): stesso trend di Faber su 5 asset, ma decide una volta a trimestre (gennaio, aprile, luglio, ottobre), cambia solo se il prezzo si allontana dalla media di almeno il 3% e quando esce resta in liquidità (nessun ordine sul monetario). 1 € a ordine._
 
-- **Valore:** 96,03 € (oggi +nan%, dall'inizio -3,97%, dal massimo -3,97%)
+- **Valore:** 95,37 € (oggi -0,69%, dall'inizio -4,63%, dal massimo -4,63%)
 - **Liquidità:** 38,81 €
 - **Decisione:** Decisione solo nei mesi [1, 4, 7, 10]: questo mese non si opera.
 
 | Posizione | Quote | Prezzo medio | Prezzo oggi | Valore | Guadagno |
 |---|---|---|---|---|---|
-| XSPX.MI | 0.1379 | 140,59 € | 138,26 € | 19,07 € | -1,66% |
-| EXUS.MI | 0.4851 | 39,96 € | 40,90 € | 19,84 € | +2,37% |
-| CMOD.MI | 0.6093 | 31,88 € | 30,06 € | 18,32 € | -5,70% |
+| XSPX.MI | 0.1379 | 140,59 € | 134,94 € | 18,61 € | -4,02% |
+| EXUS.MI | 0.4851 | 39,96 € | 40,51 € | 19,65 € | +1,39% |
+| CMOD.MI | 0.6093 | 31,88 € | 30,03 € | 18,30 € | -5,78% |
 
 Costi finora: commissioni 3,00 €, tasse 0,00 €, bollo 0,00 €. Ordini totali: 3.

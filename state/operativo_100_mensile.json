@@ -131,6 +131,10 @@
   {
    "date": "2026-11-18",
    "value": 91.14
+  },
+  {
+   "date": "2026-11-19",
+   "value": NaN
   }
  ],
  "trades": [
@@ -198,7 +202,7 @@
  "meta": {
   "capital": 100,
   "last_signal_month": "2026-11",
-  "last_run": "2026-11-18",
+  "last_run": "2026-11-19",
   "in_trend": {
    "XSPX.MI": true,
    "EXUS.MI": true,
